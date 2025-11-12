@@ -54,5 +54,6 @@ FROM pizza_sales
 GROUP BY Month_Name
 ORDER BY Total_Orders DESC;
 
-## 🗓️ Daily & Monthly Trends Analysis
+---
+### 🗓️ Daily & Monthly Trends Analysis
 
