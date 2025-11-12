@@ -37,7 +37,7 @@ The dataset used is `pizza_sales.csv`, imported into **MySQL Workbench** for ana
 
 ## 📊 Sales Performance Analysis
 
-### 🗓️ **Daily & Monthly Trends**
+
 ```sql
 -- Daily Orders Trend
 SELECT DAYNAME(STR_TO_DATE(order_date, '%d-%m-%Y')) AS Order_Week,
@@ -59,16 +59,7 @@ ORDER BY Total_Orders DESC;
 
 ## 🍕 Sales Distribution by Category & Size
 
-### 📊 Description
-This analysis shows how sales revenue is distributed across **pizza categories** (Classic, Veggie, Supreme, Chicken, etc.) and **pizza sizes** (S, M, L, XL).  
-It helps to identify which segments contribute the most to total revenue and guide marketing or pricing strategies.
-
----
-
-### 💻 SQL Queries
-
-#### 🍕 Revenue by Pizza Category
-```sql
+-- Sales by Pizza Category
 SELECT pizza_category,
        ROUND(SUM(total_price), 2) AS Total_Revenue,
        ROUND((SUM(total_price)/(SELECT SUM(total_price) FROM pizza_sales))*100, 2) AS Percentage_Contribution
@@ -76,11 +67,43 @@ FROM pizza_sales
 GROUP BY pizza_category
 ORDER BY Total_Revenue DESC;
 
+-- Sales by Pizza Size
 SELECT pizza_size,
        ROUND(SUM(total_price), 2) AS Total_Revenue,
        ROUND((SUM(total_price)/(SELECT SUM(total_price) FROM pizza_sales))*100, 2) AS Percentage_Contribution
 FROM pizza_sales
 GROUP BY pizza_size
-ORDER BY Total_Revenue DESC;
+ORDER BY pizza_size;
+
+## 🏆 Top & Bottom Performing Pizzas
+
+-- Top 5 Pizzas by Revenue
+SELECT pizza_name, SUM(total_price) AS Total_Revenue
+FROM pizza_sales
+GROUP BY pizza_name
+ORDER BY Total_Revenue DESC
+LIMIT 5;
+
+-- Top 5 Pizzas by Quantity
+SELECT pizza_name, SUM(quantity) AS Total_Sold
+FROM pizza_sales
+GROUP BY pizza_name
+ORDER BY Total_Sold DESC
+LIMIT 5;
+
+-- Bottom 5 Pizzas by Revenue
+SELECT pizza_name, ROUND(SUM(total_price), 2) AS Total_Revenue
+FROM pizza_sales
+GROUP BY pizza_name
+ORDER BY Total_Revenue ASC
+LIMIT 5;
+
+-- Bottom 5 Pizzas by Quantity
+SELECT pizza_name, SUM(quantity) AS Total_Sold
+FROM pizza_sales
+GROUP BY pizza_name
+ORDER BY Total_Sold ASC
+LIMIT 5;
+
 
 
