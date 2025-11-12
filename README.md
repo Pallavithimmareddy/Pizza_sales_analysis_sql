@@ -55,5 +55,32 @@ GROUP BY Month_Name
 ORDER BY Total_Orders DESC;
 
 ---
-### 🍕Sales Distribution by Category & Size
+---
+
+## 🍕 Sales Distribution by Category & Size
+
+### 📊 Description
+This analysis shows how sales revenue is distributed across **pizza categories** (Classic, Veggie, Supreme, Chicken, etc.) and **pizza sizes** (S, M, L, XL).  
+It helps to identify which segments contribute the most to total revenue and guide marketing or pricing strategies.
+
+---
+
+### 💻 SQL Queries
+
+#### 🍕 Revenue by Pizza Category
+```sql
+SELECT pizza_category,
+       ROUND(SUM(total_price), 2) AS Total_Revenue,
+       ROUND((SUM(total_price)/(SELECT SUM(total_price) FROM pizza_sales))*100, 2) AS Percentage_Contribution
+FROM pizza_sales
+GROUP BY pizza_category
+ORDER BY Total_Revenue DESC;
+
+SELECT pizza_size,
+       ROUND(SUM(total_price), 2) AS Total_Revenue,
+       ROUND((SUM(total_price)/(SELECT SUM(total_price) FROM pizza_sales))*100, 2) AS Percentage_Contribution
+FROM pizza_sales
+GROUP BY pizza_size
+ORDER BY Total_Revenue DESC;
+
 
