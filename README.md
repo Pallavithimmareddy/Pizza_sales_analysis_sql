@@ -54,7 +54,7 @@ FROM pizza_sales
 GROUP BY Month_Name
 ORDER BY Total_Orders DESC;
 
-## 🍕 Sales Distribution by Category & Size
+### 🗓️ **🍕 Sales Distribution by Category & Size**
 -- Sales by Pizza Category
 SELECT pizza_category,
        ROUND(SUM(total_price), 2) AS Total_Revenue,
