@@ -55,5 +55,5 @@ GROUP BY Month_Name
 ORDER BY Total_Orders DESC;
 
 ---
-### 🗓️ Daily & Monthly Trends Analysis
+### 🍕Sales Distribution by Category & Size
 
