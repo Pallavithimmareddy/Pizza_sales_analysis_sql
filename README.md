@@ -54,20 +54,5 @@ FROM pizza_sales
 GROUP BY Month_Name
 ORDER BY Total_Orders DESC;
 
-### 🗓️ **🍕 Sales Distribution by Category & Size**
--- Sales by Pizza Category
-SELECT pizza_category,
-       ROUND(SUM(total_price), 2) AS Total_Revenue,
-       ROUND((SUM(total_price)/(SELECT SUM(total_price) FROM pizza_sales))*100, 2) AS Percentage_Contribution
-FROM pizza_sales
-GROUP BY pizza_category
-ORDER BY Total_Revenue DESC;
 
--- Sales by Pizza Size
-SELECT pizza_size,
-       ROUND(SUM(total_price), 2) AS Total_Revenue,
-       ROUND((SUM(total_price)/(SELECT SUM(total_price) FROM pizza_sales))*100, 2) AS Percentage_Contribution
-FROM pizza_sales
-GROUP BY pizza_size
-ORDER BY pizza_size;
 
